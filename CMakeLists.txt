@@ -14,6 +14,9 @@ else()
     include_directories(${SDL2_INCLUDE_DIRS})
 endif()
 
+set(SPDLOG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/external/spdlog/include")
+include_directories(${SPDLOG_INCLUDE_DIR})
+
 add_executable(${PROJECT_NAME} src/main.cpp)
 
 if(EMSCRIPTEN)
