@@ -1,3 +1,4 @@
+#include <iostream>
 #include <SDL.h>
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -14,7 +15,7 @@ void main_loop()
         if (event.type == SDL_QUIT)
             running = false;
     }
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
@@ -26,6 +27,8 @@ void main_loop()
 
 int main()
 {
+    std::cout << "Hello World!" << std::endl;
+
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow("akatsuki", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);

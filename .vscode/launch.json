@@ -25,14 +25,5 @@
             "MIMode": "gdb",
             "preLaunchTask": "build-native-release"
         },
-        {
-            "name": "Debug Web (Emscripten)",
-            "type": "firefox",
-            "request": "launch",
-            "url": "http://localhost:8080/build/web-debug/akatsuki.html",
-            "webRoot": "${workspaceFolder}",
-            "firefoxExecutable": "/usr/bin/firefox",
-            "preLaunchTask": "build-web-debug",          
-        },
     ]
 }

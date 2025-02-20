@@ -32,7 +32,7 @@
         {
             "label": "build-and-run-web-server",
             "type": "shell",
-            "command": "./build.sh web debug && python -m http.server 8000",
+            "command": "./build.sh web debug && ./web-run.sh",
             "isBackground": true,
             "problemMatcher": [],
             "detail": "Build for web debugging and start the server"
@@ -40,7 +40,7 @@
         {
             "label": "stop-web-server",
             "type": "shell",
-            "command": "kill $(lsof -t -i:8000)",
+            "command": "kill $(lsof -t -i:6931)",
             "problemMatcher": [],
             "detail": "Stop the web server"
         }
