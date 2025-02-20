@@ -1,0 +1,56 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "native-debug",
+            "description": "Native Debug Build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/native-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "native-release",
+            "description": "Native Release Build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/native-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "web-debug",
+            "description": "Emscripten Debug Build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/web-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "environment": {
+                "EMSDK": "${sourceDir}/external/emsdk"
+            }
+        },
+        {
+            "name": "web-release",
+            "description": "Emscripten Release Build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/web-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "environment": {
+                "EMSDK": "${sourceDir}/external/emsdk"
+            }
+        }
+    ]
+}

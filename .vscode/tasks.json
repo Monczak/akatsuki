@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-native-debug",
+            "type": "shell",
+            "command": "./build.sh",
+            "args": ["native", "debug"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "build-native-release",
+            "type": "shell",
+            "command": "./build.sh",
+            "args": ["native", "release"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "build-web-debug",
+            "type": "shell",
+            "command": "./build.sh",
+            "args": ["web", "debug"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "build-web-release",
+            "type": "shell",
+            "command": "./build.sh",
+            "args": ["web", "release"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "build-and-run-web-server",
+            "type": "shell",
+            "command": "./build.sh web debug && python -m http.server 8000",
+            "isBackground": true,
+            "problemMatcher": [],
+            "detail": "Build for web debugging and start the server"
+        },
+        {
+            "label": "stop-web-server",
+            "type": "shell",
+            "command": "kill $(lsof -t -i:8000)",
+            "problemMatcher": [],
+            "detail": "Stop the web server"
+        }
+    ]
+}

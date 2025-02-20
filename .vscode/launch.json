@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Debug (Native)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/native-debug/akatsuki",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "environment": [],
+            "MIMode": "gdb",
+            "preLaunchTask": "build-native-debug"
+        },
+        {
+            "name": "Run Release (Native)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/native-release/akatsuki",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "environment": [],
+            "MIMode": "gdb",
+            "preLaunchTask": "build-native-release"
+        },
+        {
+            "name": "Debug Web (Emscripten)",
+            "type": "firefox",
+            "request": "launch",
+            "url": "http://localhost:8080/build/web-debug/akatsuki.html",
+            "webRoot": "${workspaceFolder}",
+            "firefoxExecutable": "/usr/bin/firefox",
+            "preLaunchTask": "build-web-debug",          
+        },
+    ]
+}

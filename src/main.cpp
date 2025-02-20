@@ -7,7 +7,10 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 bool running = true;
 
-void main_loop() {
+namespace akatsuki {
+
+void main_loop() 
+{
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) running = false;
@@ -21,7 +24,8 @@ void main_loop() {
     #endif
 }
 
-int main() {
+int main() 
+{
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow("akatsuki", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -38,3 +42,4 @@ int main() {
     return 0;
 }
 
+}
