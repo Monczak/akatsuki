@@ -17,7 +17,7 @@ void main_loop()
         if (event.type == SDL_QUIT)
             running = false;
     }
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
