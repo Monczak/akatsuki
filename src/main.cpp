@@ -27,7 +27,7 @@ void main_loop()
 #endif
 }
 
-int main()
+int main(int argc, char** argv)
 {
     spdlog::info("Hello World!");
 

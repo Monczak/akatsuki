@@ -29,6 +29,30 @@
             }
         },
         {
+            "name": "native-debug-vcpkg",
+            "description": "Native Debug Build (using vcpkg)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/native-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            },
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        {
+            "name": "native-release-vcpkg",
+            "description": "Native Release Build",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/native-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            },
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        {
             "name": "web-debug",
             "description": "Emscripten Debug Build",
             "generator": "Ninja",
