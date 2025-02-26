@@ -1,0 +1,70 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libsdl2-dev
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build/native-debug
+          cd build/native-debug
+          cmake --preset=native-debug ../..
+
+      - name: Build
+        working-directory: build/native-debug
+        run: cmake --build .
+
+      - name: Run tests
+        working-directory: build/native-debug
+        run: ./akatsuki-test
+
+  build-and-test-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Set up vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: 'd5ec528843d29e3a52d745a64b469f810b2cedbf' # 2025.02.14
+
+      - name: Install dependencies
+        run: |
+          vcpkg install sdl2:x64-windows
+
+      - name: Setup environment
+        run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build/native-debug
+          cd build/native-debug
+          cmake --preset=native-debug-vcpkg ../..
+
+      - name: Build
+        working-directory: build/native-debug
+        run: cmake --build .
+
+      - name: Run tests
+        working-directory: build/native-debug
+        run: ./akatsuki-test.exe
