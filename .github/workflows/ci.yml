@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test-linux:
+  linux-native:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,41 @@ jobs:
         working-directory: build/native-debug
         run: ./akatsuki-test
 
-  build-and-test-windows:
+  linux-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libsdl2-dev
+
+      - name: Configure Emscripten
+        working-directory: external/emsdk
+        run: |
+          ./emsdk install latest
+          ./emsdk activate latest
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build/web-debug
+          cd build/web-debug
+          cmake --preset=web-debug ../..
+
+      - name: Build
+        working-directory: build/web-debug
+        run: cmake --build .
+
+# TODO: Figure out how to run tests in Emscripten, if that's even feasible
+#      - name: Run tests
+#        working-directory: build/web-debug
+#        run: ./akatsuki-test
+
+  windows-native:
     runs-on: windows-latest
 
     steps:
